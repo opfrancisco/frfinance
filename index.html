@@ -3,29 +3,92 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FR Finance</title>
+  <title>FR Finance - Login</title>
 
-  <!-- Aqui você pode ligar um CSS depois -->
-  <!-- <link rel="stylesheet" href="style.css" /> -->
+  <!-- SEU CSS DO PROJETO -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>FR Finance</h1>
-    <p>Bem-vindo ao meu projeto de finanças.</p>
-  </header>
+  <div class="app app-login">
+    <header class="app-header">
+      <h1 class="app-title">FR Finance</h1>
+      <p class="app-subtitle">Entre para acessar seus lançamentos.</p>
+    </header>
 
-  <main>
-    <section>
-      <h2>Sobre</h2>
-      <p>Descreva aqui o que o site faz.</p>
-    </section>
-  </main>
+    <main class="app-main">
+      <section class="login-container">
+        <form id="login-form" class="login-form">
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="voce@exemplo.com"
+            />
+          </div>
 
-  <footer>
-    <p>&copy; 2026 FR Finance</p>
-  </footer>
+          <div class="form-group">
+            <label for="password">Senha</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="Sua senha"
+            />
+          </div>
 
-  <!-- Aqui você pode ligar um JavaScript depois -->
-  <!-- <script src="script.js"></script> -->
+          <p class="form-error" id="error-message"></p>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+              Entrar
+            </button>
+          </div>
+        </form>
+
+        <p class="form-helper">
+          Ainda não tem conta?
+          <a href="#" id="link-cadastrar">Criar conta</a>
+        </p>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>© 2026 FR Finance</p>
+    </footer>
+  </div>
+
+  <!-- SEU JS DO PROJETO (se já tiver) -->
+  <!-- <script src="main.js"></script> -->
+
+  <script>
+    // Lógica mínima por enquanto. Depois trocamos pelo Firebase Auth.
+    const form = document.getElementById('login-form');
+    const errorBox = document.getElementById('error-message');
+    const linkCadastrar = document.getElementById('link-cadastrar');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (!email || !password) {
+        errorBox.textContent = 'Preencha e-mail e senha.';
+        return;
+      }
+
+      // Aqui depois entra o login REAL com Firebase.
+      errorBox.textContent =
+        'Login ainda não está conectado ao servidor (Firebase).';
+    });
+
+    linkCadastrar.addEventListener('click', function (event) {
+      event.preventDefault();
+      alert('Aqui depois vamos abrir a tela de cadastro.');
+    });
+  </script>
 </body>
 </html>
