@@ -2,105 +2,76 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>pFinance - Controle de Comércio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FR Finance - Login</title>
+
+  <!-- CSS NA MESMA PASTA -->
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <header>
-    <h1>pFinance</h1>
-    <p>Controle simples para comércio pequeno</p>
+<body class="app app-login">
+  <header class="app-header">
+    <h1 class="app-title">FR Finance</h1>
+    <p class="app-subtitle">Entre para acessar seus lançamentos.</p>
   </header>
 
-  <nav id="menu-principal">
-    <button onclick="abrirTela('produtos')">Produtos</button>
-    <button onclick="abrirTela('vendas')">Vendas</button>
-    <button onclick="abrirTela('relatorios')">Relatórios</button>
-  </nav>
+  <main class="app-main">
+    <section class="login-container card">
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input
+            id="email"
+            name="email"
+            type="text"
+            placeholder="voce@exemplo.com"
+            autocomplete="off"
+          />
+        </div>
 
-  <main>
-    <!-- Tela Produtos -->
-    <section id="tela-produtos" class="tela oculto">
-      <h2>Produtos</h2>
+        <div class="form-group">
+          <label for="password">Senha</label>
+          <input
+            id="password"
+            name="password"
+            type="text"
+            placeholder="Sua senha"
+            autocomplete="off"
+          />
+        </div>
 
-      <form id="form-produto" onsubmit="salvarProduto(event)">
-        <input type="hidden" id="produto-id" />
-
-        <label>Nome</label>
-        <input type="text" id="produto-nome" required />
-
-        <label>Preço de venda</label>
-        <input type="number" id="produto-preco" step="0.01" required />
-
-        <label>Estoque atual</label>
-        <input type="number" id="produto-estoque" step="1" required />
-
-        <button type="submit">Salvar</button>
-        <button type="button" onclick="limparFormularioProduto()">Novo</button>
+        <div class="form-actions">
+          <!-- type="button" para NÃO disparar validação/envio do form -->
+          <button type="button" id="btn-entrar" class="btn btn-primary">
+            Entrar
+          </button>
+        </div>
       </form>
 
-      <h3>Lista de produtos</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Estoque</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody id="tabela-produtos"></tbody>
-      </table>
-    </section>
-
-    <!-- Tela Vendas -->
-    <section id="tela-vendas" class="tela oculto">
-      <h2>Vendas</h2>
-
-      <div class="bloco">
-        <label>Produto</label>
-        <select id="venda-produto"></select>
-
-        <label>Quantidade</label>
-        <input type="number" id="venda-quantidade" step="1" value="1" />
-
-        <button onclick="adicionarItemVenda()">Adicionar</button>
-      </div>
-
-      <h3>Itens da venda</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Produto</th>
-            <th>Qtd</th>
-            <th>Preço</th>
-            <th>Total</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody id="tabela-itens-venda"></tbody>
-      </table>
-
-      <div class="total-venda">
-        Total: R$ <span id="venda-total">0.00</span>
-      </div>
-
-      <button onclick="finalizarVenda()">Finalizar venda</button>
-    </section>
-
-    <!-- Tela Relatórios -->
-    <section id="tela-relatorios" class="tela oculto">
-      <h2>Relatórios</h2>
-
-      <p>Aqui, por enquanto, mostraremos o total de vendas e a lista de vendas salvas localmente.</p>
-
-      <div id="resumo-relatorio"></div>
-
-      <h3>Vendas registradas</h3>
-      <ul id="lista-vendas"></ul>
+      <p class="form-helper">
+        Ainda não tem conta?
+        <a href="#" id="link-cadastrar">Criar conta</a>
+      </p>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <footer class="app-footer">
+    <p>© 2026 FR Finance</p>
+  </footer>
+
+  <script>
+    const botaoEntrar = document.getElementById('btn-entrar');
+    const linkCadastrar = document.getElementById('link-cadastrar');
+
+    // PROVISÓRIO: sem autenticação, só redireciona para a página principal
+    botaoEntrar.addEventListener('click', function () {
+      // princp.html DEVE estar na mesma pasta (public/)
+      window.location.href = 'princp.html';
+    });
+
+    linkCadastrar.addEventListener('click', function (event) {
+      event.preventDefault();
+      alert('Aqui depois vamos abrir a tela de cadastro de usuário.');
+    });
+  </script>
 </body>
 </html>
