@@ -5,67 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FR Finance - Login</title>
 
-  <!-- SEU CSS DO PROJETO -->
-  <link rel="stylesheet" href="style.css" />
+  <!-- CSS compartilhado em todas as páginas -->
+  <link rel="stylesheet" href="public/style.css" />
 </head>
-<body>
-  <div class="app app-login">
-    <header class="app-header">
-      <h1 class="app-title">FR Finance</h1>
-      <p class="app-subtitle">Entre para acessar seus lançamentos.</p>
-    </header>
+<body class="app app-login">
+  <header class="app-header">
+    <h1 class="app-title">FR Finance</h1>
+    <p class="app-subtitle">Entre para acessar seus lançamentos.</p>
+  </header>
 
-    <main class="app-main">
-      <section class="login-container">
-        <form id="login-form" class="login-form">
-          <div class="form-group">
-            <label for="email">E-mail</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              placeholder="voce@exemplo.com"
-            />
-          </div>
+  <main class="app-main">
+    <section class="login-container card">
+      <form id="login-form" class="login-form">
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="voce@exemplo.com"
+          />
+        </div>
 
-          <div class="form-group">
-            <label for="password">Senha</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              required
-              placeholder="Sua senha"
-            />
-          </div>
+        <div class="form-group">
+          <label for="password">Senha</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            placeholder="Sua senha"
+          />
+        </div>
 
-          <p class="form-error" id="error-message"></p>
+        <p class="form-error" id="error-message"></p>
 
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">
-              Entrar
-            </button>
-          </div>
-        </form>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">
+            Entrar
+          </button>
+        </div>
+      </form>
 
-        <p class="form-helper">
-          Ainda não tem conta?
-          <a href="#" id="link-cadastrar">Criar conta</a>
-        </p>
-      </section>
-    </main>
+      <p class="form-helper">
+        Ainda não tem conta?
+        <a href="#" id="link-cadastrar">Criar conta</a>
+      </p>
+    </section>
+  </main>
 
-    <footer class="app-footer">
-      <p>© 2026 FR Finance</p>
-    </footer>
-  </div>
-
-  <!-- SEU JS DO PROJETO (se já tiver) -->
-  <!-- <script src="main.js"></script> -->
+  <footer class="app-footer">
+    <p>© 2026 FR Finance</p>
+  </footer>
 
   <script>
-    // Lógica mínima por enquanto. Depois trocamos pelo Firebase Auth.
     const form = document.getElementById('login-form');
     const errorBox = document.getElementById('error-message');
     const linkCadastrar = document.getElementById('link-cadastrar');
@@ -80,14 +74,13 @@
         return;
       }
 
-      // Aqui depois entra o login REAL com Firebase.
-      errorBox.textContent =
-        'Login ainda não está conectado ao servidor (Firebase).';
+      errorBox.textContent = '';
+      window.location.href = 'public/dashboard.html';
     });
 
     linkCadastrar.addEventListener('click', function (event) {
       event.preventDefault();
-      alert('Aqui depois vamos abrir a tela de cadastro.');
+      alert('Aqui depois vamos abrir a tela de cadastro de usuário.');
     });
   </script>
 </body>

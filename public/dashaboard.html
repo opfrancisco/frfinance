@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FR Finance - Dashboard</title>
+
+  <!-- mesmo CSS, mesmo caminho -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="app app-dashboard">
+  <header class="app-header">
+    <h1 class="app-title">FR Finance</h1>
+    <p class="app-subtitle">Controle de vendas, saídas e crediário.</p>
+
+    <nav class="app-nav">
+      <button type="button" class="btn btn-link" onclick="scrollToSection('secao-vendas')">
+        Vendas
+      </button>
+      <button type="button" class="btn btn-link" onclick="scrollToSection('secao-saidas')">
+        Saídas
+      </button>
+      <button type="button" class="btn btn-link" onclick="scrollToSection('secao-crediario')">
+        Crediário
+      </button>
+      <button type="button" class="btn btn-link btn-logout" onclick="sair()">
+        Sair
+      </button>
+    </nav>
+  </header>
+
+  <main class="app-main">
+
+    <section class="card secao" id="secao-vendas">
+      <h2>Vendas</h2>
+
+      <form id="form-venda" class="form-registro">
+        <div class="linha-form">
+          <div class="campo">
+            <label for="venda-cliente">Nome do cliente</label>
+            <input type="text" id="venda-cliente" name="cliente" required />
+          </div>
+
+          <div class="campo">
+            <label for="venda-data">Data da venda</label>
+            <input type="date" id="venda-data" name="data" required />
+          </div>
+        </div>
+
+        <div class="linha-form">
+          <div class="campo">
+            <label for="venda-valor">Valor</label>
+            <input
+              type="number"
+              id="venda-valor"
+              name="valor"
+              min="0"
+              step="0.01"
+              required
+            />
+          </div>
+
+          <div class="campo">
+            <label for="venda-forma">Forma de pagamento</label>
+            <select id="venda-forma" name="forma_pagamento" required>
+              <option value="">Selecione</option>
+              <option value="dinheiro">Dinheiro</option>
+              <option value="debito">Cartão Débito</option>
+              <option value="credito">Cartão Crédito</option>
+              <option value="pix">PIX</option>
+              <option value="boleto">Boleto</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrar venda</button>
+      </form>
+
+      <div class="lista-registros" id="lista-vendas"></div>
+    </section>
+
+    <section class="card secao" id="secao-saidas">
+      <h2>Saídas</h2>
+
+      <form id="form-saida" class="form-registro">
+        <div class="linha-form">
+          <div class="campo">
+            <label for="saida-descricao">Descrição / Tipo de saída</label>
+            <input type="text" id="saida-descricao" name="descricao" required />
+          </div>
+
+          <div class="campo">
+            <label for="saida-data">Data</label>
+            <input type="date" id="saida-data" name="data" required />
+          </div>
+        </div>
+
+        <div class="linha-form">
+          <div class="campo">
+            <label for="saida-valor">Valor</label>
+            <input
+              type="number"
+              id="saida-valor"
+              name="valor"
+              min="0"
+              step="0.01"
+              required
+            />
+          </div>
+
+          <div class="campo">
+            <label for="saida-forma">Forma de pagamento</label>
+            <select id="saida-forma" name="forma_pagamento" required>
+              <option value="">Selecione</option>
+              <option value="dinheiro">Dinheiro</option>
+              <option value="debito">Cartão Débito</option>
+              <option value="credito">Cartão Crédito</option>
+              <option value="pix">PIX</option>
+              <option value="boleto">Boleto</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-secondary">Registrar saída</button>
+      </form>
+
+      <div class="lista-registros" id="lista-saidas"></div>
+    </section>
+
+    <section class="card secao" id="secao-crediario">
+      <h2>Vendas no crediário</h2>
+
+      <form id="form-crediario" class="form-registro">
+        <div class="linha-form">
+          <div class="campo">
+            <label for="cred-cliente">Nome do cliente</label>
+            <input type="text" id="cred-cliente" name="cliente" required />
+          </div>
+
+          <div class="campo">
+            <label for="cred-data">Data da venda</label>
+            <input type="date" id="cred-data" name="data" required />
+          </div>
+        </div>
+
+        <div class="linha-form">
+          <div class="campo">
+            <label for="cred-valor">Valor total</label>
+            <input
+              type="number"
+              id="cred-valor"
+              name="valor"
+              min="0"
+              step="0.01"
+              required
+            />
+          </div>
+
+          <div class="campo">
+            <label for="cred-parcelas">Número de parcelas</label>
+            <input
+              type="number"
+              id="cred-parcelas"
+              name="parcelas"
+              min="1"
+              max="48"
+              value="1"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="linha-form">
+          <div class="campo">
+            <label for="cred-forma">Forma de pagamento do crediário</label>
+            <select id="cred-forma" name="forma_pagamento" required>
+              <option value="">Selecione</option>
+              <option value="carne">Carnê</option>
+              <option value="boleto">Boleto</option>
+              <option value="debito_auto">Débito automático</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrar crediário</button>
+      </form>
+
+      <div class="lista-registros" id="lista-crediario"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>© 2026 FR Finance</p>
+  </footer>
+
+  <script>
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function sair() {
+      window.location.href = '../index.html';
+    }
+
+    document.getElementById('form-venda').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const dados = {
+        cliente: document.getElementById('venda-cliente').value.trim(),
+        data: document.getElementById('venda-data').value,
+        valor: parseFloat(document.getElementById('venda-valor').value || 0),
+        forma_pagamento: document.getElementById('venda-forma').value,
+      };
+      console.log('Venda registrada:', dados);
+      this.reset();
+    });
+
+    document.getElementById('form-saida').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const dados = {
+        descricao: document.getElementById('saida-descricao').value.trim(),
+        data: document.getElementById('saida-data').value,
+        valor: parseFloat(document.getElementById('saida-valor').value || 0),
+        forma_pagamento: document.getElementById('saida-forma').value,
+      };
+      console.log('Saída registrada:', dados);
+      this.reset();
+    });
+
+    document.getElementById('form-crediario').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const dados = {
+        cliente: document.getElementById('cred-cliente').value.trim(),
+        data: document.getElementById('cred-data').value,
+        valor: parseFloat(document.getElementById('cred-valor').value || 0),
+        parcelas: parseInt(document.getElementById('cred-parcelas').value || 1, 10),
+        forma_pagamento: document.getElementById('cred-forma').value,
+      };
+      console.log('Crediário registrado:', dados);
+      this.reset();
+    });
+  </script>
+</body>
+</html>
